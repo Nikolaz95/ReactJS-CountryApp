@@ -1,0 +1,16 @@
+.switch-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.mode-icon {
+    width: 30px; /* Adjust the size of the icon */
+    height: 30px;
+}
+
+
+.css-tj8d99-MuiSwitch-track {
+    background-color: yellowgreen;
+}

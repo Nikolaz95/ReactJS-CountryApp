@@ -1,0 +1,26 @@
+
+.form-content {
+    width: 300px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.form-content input {
+    width: 80%;
+    padding: 17px 14px;
+    outline: 0;
+    border: 0;
+    font-size: 18px;
+    background-color: #ebebeb;
+    border-radius: 10px;
+}
+
+
+.iconSearch {
+    position: absolute;
+    top: 9px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+}

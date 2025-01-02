@@ -1,0 +1,146 @@
+
+
+
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: yellowgreen;
+   /* backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(13.8px); */
+    color: rgb(3, 2, 2);
+    padding: 40px;
+    font-weight: bold;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    box-shadow: 10px 10px 15px #ebebeb, -10px -10px 15px #ffffff;
+  }
+  
+
+  
+  .footer-contet {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 200px;
+    align-items: center;
+    margin-top: 20px;
+    border: 1px solid black;
+  }
+  
+  
+  .footer-mainContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .addres {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  address {
+    font-size: 25px;
+  }
+  
+  .copy-right {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+  }
+
+  .copyrght-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .contactFooter-link {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+  
+  .contact-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .contact-img {
+    width: 70px;
+    height: 80px;
+  }
+
+
+  .contact-img:hover {
+    transition-duration: 1s;
+    transform: scale(1.5);
+  }
+
+
+  @media only screen and (max-width: 930px) {
+    .footer-contet {
+        display: flex;
+        flex-direction: row;
+        padding: 8px;
+    }
+}
+
+
+@media only screen and (max-width: 929px) {
+    .footer-contet {
+        display: grid;
+        flex-direction: column;
+        padding-top: 8px;
+    }
+
+    .copy-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      font-size: 25px;
+    }
+
+
+    .footer-mainContent {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+    }
+}
+
+
+@media only screen and (max-width: 409px) {
+    .footer-contet {
+        display: grid;
+        flex-direction: column;
+        padding-top: 8px;
+        text-align: center;
+    }
+
+
+    .footer-mainContent {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+    }
+}
+
+
+@media only screen and (max-width: 335px)  {
+
+}
+
+
+
+@media only screen and (max-width: 320px) {
+
+}

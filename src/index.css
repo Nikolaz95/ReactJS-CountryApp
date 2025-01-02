@@ -1,0 +1,25 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  transition: background-color 0.3s ease; /* Optional: Smooth transition */
+  color: var(--text-color);
+}
+
+/* Dark Mode Styles */
+[data-theme='dark'] {
+  --background: rgb(28, 39, 48); /* Dark background */
+  background-color: var(--background);
+  --text-color: #ffffff;
+}
+
+/* Light Mode Styles */
+[data-theme='light'] {
+  --background: #ffffff; /* Light background */
+  background-color: var(--background);
+}
