@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className='headerContent'>
             <div className='titleHeader'>
-                <h1>Where in the world ?   a</h1>
+                <h1>Where in the world ?</h1>
             </div>
             {/* <div className="switcher">
                 <Switcher />
