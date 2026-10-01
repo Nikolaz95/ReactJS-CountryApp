@@ -1,26 +1,85 @@
-
-.form-content {
-    width: 300px;
+.search-content {
     position: relative;
-    border-radius: 20px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
 }
 
-.form-content input {
-    width: 80%;
-    padding: 17px 14px;
-    outline: 0;
-    border: 0;
-    font-size: 18px;
-    background-color: #ebebeb;
-    border-radius: 10px;
-}
-
-
-.iconSearch {
+.search-icon {
     position: absolute;
-    top: 9px;
-    right: 0px;
-    width: 30px;
-    height: 30px;
+    left: 16px;
+    font-size: 18px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.searchCountry {
+    width: 100%;
+    height: 52px;
+    padding: 0 48px 0 46px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.searchCountry::-webkit-search-cancel-button {
+    display: none;
+}
+
+.searchCountry::placeholder {
+    color: var(--text-muted);
+}
+
+.searchCountry:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.search-content:focus-within .search-icon {
+    color: var(--accent);
+}
+
+.search-clear {
+    position: absolute;
+    right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--text-muted);
+    animation: fade-in 0.2s ease;
+}
+
+.search-clear:hover {
+    background: var(--surface-2);
+    color: var(--text);
+}
+
+.search-kbd {
+    position: absolute;
+    right: 16px;
+    padding: 1px 8px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+@media (hover: none) {
+    .search-kbd {
+        display: none;
+    }
 }

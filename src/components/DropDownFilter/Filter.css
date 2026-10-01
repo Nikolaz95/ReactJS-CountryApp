@@ -1,79 +1,147 @@
-
 .dropdown-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    position: relative;
+    flex-shrink: 0;
 }
-
 
 .btn-Filter {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 10px;
-    border: none;
-    padding: 10px;
-    border-radius: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
+    width: 100%;
+    height: 52px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.btn-Filter:hover,
+.btn-Filter[aria-expanded='true'] {
+    border-color: var(--accent);
+}
+
+.btn-Filter[aria-expanded='true'] {
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.btn-Filter-label {
+    flex: 1;
+    text-align: left;
+}
+
+.iconArrow {
+    font-size: 18px;
+    color: var(--text-muted);
+    transition: transform 0.3s var(--ease-out);
+}
+
+.btn-Filter[aria-expanded='true'] .iconArrow {
+    transform: rotate(180deg);
+}
+
+/* --c comes from the [data-region] rules in index.css, "all" falls back to the accent */
+.region-dot {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--c, var(--accent));
+}
 
 .dropDown-menu {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
     position: absolute;
-    top: 216px;
-    right: 28px;
-    width: 200px;
-    background-color: transparent;
-    /* border: 1px solid black; */
-    border-radius: 20px;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 10;
+    width: max(100%, 240px);
+    padding: 6px;
+    list-style: none;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow-lg);
+    transform-origin: top right;
+    animation: menu-in 0.22s var(--ease-out);
 }
 
-.dropDown-menu option {
+.dropDown-menu li {
+    animation: fade-up 0.3s var(--ease-out) both;
+    animation-delay: calc(var(--i) * 25ms);
+}
+
+@keyframes menu-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.region-option {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    gap: 5px;
-    border: 1px solid black;
-    background-color: white;
-    border-radius: 20px;
+    gap: 10px;
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.15s ease;
 }
 
+.region-option:hover {
+    background: var(--surface-2);
+}
 
+.region-option-label {
+    flex: 1;
+}
 
-@media only screen and (max-width: 600px) {
+.region-count {
+    min-width: 28px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.region-check {
+    font-size: 16px;
+    color: var(--accent);
+    visibility: hidden;
+}
+
+[aria-selected='true'] > .region-option {
+    background: var(--accent-soft);
+    font-weight: 600;
+}
+
+[aria-selected='true'] .region-check {
+    visibility: visible;
+}
+
+/* On phones the menu spans the full width of the toolbar */
+@media (max-width: 640px) {
+    .dropdown-content {
+        position: static;
+    }
+
     .dropDown-menu {
-        display: flex;
-        flex-direction: column; 
-        gap: 5px;
-        width: 200px;
-        background-color: transparent;
-        border-radius: 20px;
-        position: relative;
-        top: 0px;
-        right: 0px;
-    }
-
-    .dropDown-menu option {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-        gap: 5px;
-        border: 1px solid black;
-        background-color: white;
-        border-radius: 20px;
+        left: 0;
+        right: 0;
+        width: auto;
+        transform-origin: top center;
     }
 }
-

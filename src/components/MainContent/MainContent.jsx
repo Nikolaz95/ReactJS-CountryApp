@@ -1,63 +1,83 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
-
-
-//import components
-import Loader from '../Loading/Loader';
+import { Link } from 'react-router-dom';
+import { FiSearch } from 'react-icons/fi';
 
 //import css
 import "./MainContent.css"
+import { countryPath, formatNumber } from '../../utils/countries';
 
-//import img
-import Pagination from '../Pagination/Paginationn';
+const SKELETON_CARDS = 12;
 
+const CountryCard = ({ country, index }) => (
+    <Link to={countryPath(country)} className="card" style={{ '--i': index }}>
+        <div className="cardFlag">
+            <img
+                src={country.flags.png}
+                alt={`Flag of ${country.name.common}`}
+                loading="lazy"
+                className="cardImg"
+            />
+        </div>
+        <div className="cardBody">
+            <div className="cardHeading">
+                <h2 className="cardTitle">{country.name.common}</h2>
+                <span className="region-badge" data-region={country.region}>{country.region}</span>
+            </div>
+            <dl className="cardFacts">
+                <div>
+                    <dt>Population</dt>
+                    <dd>{country.population ? formatNumber(country.population) : "Uninhabited"}</dd>
+                </div>
+                <div>
+                    <dt>Capital</dt>
+                    <dd>{country.capital[0] ?? "—"}</dd>
+                </div>
+            </dl>
+        </div>
+    </Link>
+);
 
-const MainContent = ({ countries, loading, error, totalCountries, countriesPerPage, handlePageChange, currentPage }) => {
+const SkeletonCard = () => (
+    <div className="card card-skeleton" aria-hidden="true">
+        <div className="cardFlag skeleton" />
+        <div className="cardBody">
+            <div className="skeleton" style={{ height: 22, width: '70%' }} />
+            <div className="skeleton" style={{ height: 14, width: '50%' }} />
+            <div className="skeleton" style={{ height: 14, width: '40%' }} />
+        </div>
+    </div>
+);
+
+const MainContent = ({ countries, loading, error, animationKey, onReset }) => {
+    if (error) {
+        return <p className="results-message">{error}</p>;
+    }
+
+    if (loading) {
+        return (
+            <section className="cardContent" aria-busy="true">
+                {Array.from({ length: SKELETON_CARDS }, (_, i) => <SkeletonCard key={i} />)}
+            </section>
+        );
+    }
+
+    if (countries.length === 0) {
+        return (
+            <div className="empty-state">
+                <FiSearch className="empty-icon" />
+                <h2>No countries found</h2>
+                <p>Try a different name, or search in all regions.</p>
+                <button className="btn btn-primary" onClick={onReset}>Clear filters</button>
+            </div>
+        );
+    }
 
     return (
-        <>
-            {loading ? (
-                <Loader /> // Display loader while loading
-            ) : (
-                <>
-                    <section className="cardContent">
-
-                        {countries?.map((country) => (
-                            <div key={country.name.common} className="card"> {/* Use cca3 as a unique key */}
-                                <div className="cardTop">
-                                    <NavLink to={`/country/${country.name.common}`}>
-                                        <img
-                                            src={country.flags.png}
-                                            alt={`${country.name.common} flag`}
-                                            width={50}
-                                            height={30}
-                                            className="cardImg"
-                                        />
-                                    </NavLink>
-                                </div>
-                                <div className="cardBottom">
-                                    <strong>{country.name.common}</strong>
-                                    <p>Population: {country.population.toLocaleString()}</p>
-                                    <p>Region: {country.region}</p>
-                                    <p>Capital city: {country.capital ? country.capital[0] : "N/A"}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </section>
-
-                    <div className="pagination">
-                        <Pagination
-                            countriesPerPage={countriesPerPage}
-                            totalCountries={totalCountries}
-                            handlePageChange={handlePageChange}
-                            currentPage={currentPage}
-                        />
-                    </div>
-                </>
-            )}
-        </>
-
-
+        <section className="cardContent" key={animationKey}>
+            {countries.map((country, index) => (
+                <CountryCard key={country.cca3} country={country} index={index} />
+            ))}
+        </section>
     )
 }
 

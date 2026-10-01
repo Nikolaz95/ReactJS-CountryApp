@@ -1,34 +1,77 @@
 .headerContent {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerInner {
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    text-align: center;
-    border-radius: 80px;
-    padding: 20px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    box-shadow:  10px 10px 15px #ebebeb, -10px -10px 15px #ffffff;
-    margin: 20px 0px;
+    gap: 12px;
+    min-height: 68px;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
 
-@media only screen and (max-width: 580px) {
-    .headerContent {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        text-align: center;
+.logo-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 26px;
+    color: var(--accent);
+    transition: transform 0.6s var(--ease-out);
+}
+
+.logo:hover .logo-icon {
+    transform: rotate(180deg);
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 4.5vw, 22px);
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-surprise svg {
+    font-size: 18px;
+    transition: transform 0.3s var(--ease-out);
+}
+
+.btn-surprise:hover svg {
+    transform: rotate(-12deg) scale(1.1);
+}
+
+.btn-surprise:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+@media (max-width: 640px) {
+    .btn-surprise {
+        width: 44px;
+        padding: 0;
     }
-}
 
-
-@media only screen and (max-width: 425px) {
-    .headerContent {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        text-align: center;
+    .btn-surprise-label {
+        display: none;
     }
 }

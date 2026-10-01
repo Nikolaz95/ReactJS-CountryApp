@@ -2,9 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/icons-earth.png" />
+    <link rel="icon" type="image/png" href="./src/assets/icons-earth.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="description" content="Explore every country in the world: population, languages, currencies, neighbours and more." />
+    <title>Where in the world?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script>
+      // Light theme by default; dark only when the visitor picked it with the toggle.
+      // Runs before React loads so the page does not flash.
+      (function () {
+        var theme;
+        try { theme = localStorage.getItem('theme'); } catch (e) {}
+        document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

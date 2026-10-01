@@ -1,63 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { FiMoon, FiSun } from 'react-icons/fi'
 
 //import css
 import "./Switcher.css"
 
-//import  icons
-import LightMode from "../../assets/icon-sun.png"
-import DarkMode from "../../assets/icon-moon-phase.png"
-
+// index.html already set data-theme: light unless the visitor chose dark before
+const getInitialTheme = () => document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
 
 const Switcher = () => {
-    const [switchMode, setSwitchMode] = useState(false);
+    const [theme, setTheme] = useState(getInitialTheme);
+    const isDark = theme === 'dark';
 
-    const theme = createTheme({
-        palette: {
-            mode: switchMode ? 'light' : 'dark',
-        },
-    });
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+    }, [theme]);
 
-    const handleChange = (event) => {
-        setSwitchMode(event.target.checked);
+    const toggleTheme = () => {
+        const next = isDark ? 'light' : 'dark';
+        setTheme(next);
+        try {
+            localStorage.setItem('theme', next);
+        } catch {
+            // Storage can be blocked, the theme still works for this visit
+        }
     };
 
-    const labelText = switchMode ? 'Dark Mode' : 'Light Mode';
-
-    // Effect to update data-theme attribute
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', switchMode ? 'dark' : 'light');
-    }, [switchMode]);
     return (
-        <ThemeProvider theme={theme}>
-            <FormGroup>
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={switchMode}
-                            onChange={handleChange}
-                            color="primary"
-                        />
-                    }
-                    label={
-                        <div className="switch-label">
-                            {/* Display sun icon for light mode and moon for dark mode */}
-                            <img
-                                src={switchMode ? DarkMode : LightMode}
-                                alt={switchMode ? 'Dark Mode' : 'Light Mode'}
-                                className="mode-icon"
-                            />
-                            {labelText}
-                        </div>
-                    }
-                />
-            </FormGroup>
-        </ThemeProvider>
-
+        <button
+            className='icon-btn theme-toggle'
+            onClick={toggleTheme}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? 'Light mode' : 'Dark mode'}
+        >
+            <span className='theme-toggle-icon' key={theme}>
+                {isDark ? <FiSun /> : <FiMoon />}
+            </span>
+        </button>
     )
 }
 
