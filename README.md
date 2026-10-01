@@ -2,7 +2,7 @@
 
 A React app for exploring every country in the world. You can search, filter by region and sort countries, and each one has its own page with key numbers, facts, a map and its neighbours.
 
-**[Live demo](https://react-js-country-app-git-main-nikolas-projects-d50df3a6.vercel.app/)** · **[Portfolio](https://nikolazovkoportfolio.netlify.app/#home)**
+**[Live demo](https://react-js-country-app.vercel.app/)** · **[Portfolio](https://nikolazovkoportfolio.netlify.app/#home)**
 
 ![Home page](docs/screenshots/home-desktop.webp)
 
